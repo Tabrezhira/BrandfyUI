@@ -2,9 +2,9 @@ import React from 'react';
 
 function Hero() {
   return (
-    <section className=" mx-auto container w-full h-90 flex flex-col items-center justify-center">
+    <section className=" mx-auto container w-full h-100 md:h-90 flex flex-col items-center justify-center">
       <h1 className=" font-bfont mb-4 text-6xl font-bold">BrandyUI</h1>
-      <p className=" font-bfont text-gray-700 mb-6 text-lg font-normal">
+      <p className=" font-bfont text-gray-700 mb-6 text-lg  text-center font-normal">
         Free Open Source Tailwind CSS v4 Components
       </p>
       <p className=" font-bfont text-gray-700 mb-6 font-normal text-base  flex flex-col items-center text-center">
