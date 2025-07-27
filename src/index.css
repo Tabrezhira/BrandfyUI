@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'Bfont';
+  src: url('./assets/fonts/e4af272ccee01ff0-s.p.woff2') format('woff2');
+}
+@import "tailwindcss";
+
+@theme{
+    --font-bfont: Bfont,'sans-serif';
+}
+
+
+/* You can add your global styles below */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f9fafb;
+  margin: 0;
+  padding: 0;
+}
