@@ -45,7 +45,7 @@ function Navbar() {
             <input className='w-30 md:w-50  border-none outline-none bg-transparent shadow-none focus:ring-0' placeholder='Search components'  type="text" />
           </div>
           <div className='flex items-center gap-1 text-lg font-semibold'>
-            <FaGithub  className=' text-2xl '/>
+            <FaGithub  className=' cursor-pointer text-2xl '/>
             {/* <span className='text-gray-600 text-sm font-medium'>
               {stars !== null ? stars : 'Loading...'}
             </span> */}
@@ -55,13 +55,13 @@ function Navbar() {
           </div>
           
             {isOpen && (
-  <div className='absolute top-16 left-0 w-full bg-white rounded-md shadow-lg border-t border-gray-200 z-50'>
-    <ul className='flex flex-col items-start justify-center w-full'>
-      <li className='px-4 py-2 hover:bg-gray-100 cursor-pointer w-full'>Application</li>
-      <li className='px-4 py-2 hover:bg-gray-100 cursor-pointer w-full'>Marketing</li>
-      <li className='px-4 py-2 hover:bg-gray-100 cursor-pointer w-full'>Blog</li>
-    </ul>
-  </div>
+            <div className='absolute top-16 left-0 w-full bg-white rounded-md shadow-lg border-t border-gray-200 z-50'>
+              <ul className='flex flex-col items-start justify-center w-full'>
+                <li className='px-4 py-2 hover:bg-gray-100 cursor-pointer w-full'>Application</li>
+                <li className='px-4 py-2 hover:bg-gray-100 cursor-pointer w-full'>Marketing</li>
+                <li className='px-4 py-2 hover:bg-gray-100 cursor-pointer w-full'>Blog</li>
+              </ul>
+            </div>
             ) }
 
 
