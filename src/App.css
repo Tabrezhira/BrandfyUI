@@ -1,0 +1,18 @@
+
+.force-mobile * {
+  max-width: 100% !important;
+}
+
+
+.force-mobile .md\:hidden {
+  display: block !important;
+}
+
+.force-mobile .md\:block,
+.force-mobile .md\:flex {
+  display: none !important;
+}
+
+.force-mobile .sm\:hidden {
+  display: block !important;
+}
