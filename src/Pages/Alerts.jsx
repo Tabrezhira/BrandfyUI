@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 function Alerts() {
-  return (
-    <div>Alerts</div>
-  )
+  return <div>Alerts</div>;
 }
 
-export default Alerts
+export default Alerts;

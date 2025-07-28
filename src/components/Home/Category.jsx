@@ -1,6 +1,6 @@
 import React from 'react'
-import Application from './CategoryGroup.jsx/Application'
-import Marketing from './CategoryGroup.jsx/Marketing'
+import Application from '../CategoryGroup.jsx/Application'
+import Marketing from '../CategoryGroup.jsx/Marketing'
 
 function Category() {
   return (

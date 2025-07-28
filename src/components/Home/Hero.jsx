@@ -9,10 +9,8 @@ function Hero() {
       </p>
       <p className="w-100 px-2 md:px-0 md:w-160 font-bfont text-gray-700 mb-6 font-normal text-base  flex flex-col items-center text-center">
         BrandfyUI is a collection of free Tailwind CSS components that can be
-        used in you 
-        next project. With a range of components, you can build your next
-        marketing 
-        website, admin dashboard, eCommerce store and much more.
+        used in you next project. With a range of components, you can build your
+        next marketing website, admin dashboard, eCommerce store and much more.
         <br />
       </p>
       <div>
@@ -21,7 +19,9 @@ function Hero() {
             <span role="img" aria-hidden="true">
               ✅
             </span>
-            <span className="text-sm font-medium text-gray-900">No install</span>
+            <span className="text-sm font-medium text-gray-900">
+              No install
+            </span>
           </li>
           <li className="inline-flex items-center gap-1">
             <span role="img" aria-hidden="true">
