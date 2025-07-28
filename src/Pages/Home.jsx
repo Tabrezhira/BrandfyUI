@@ -8,11 +8,8 @@ function Home() {
   return (
     <>
       <section className=" mx-auto">
-        <Navbar />
-        <Header />
         <Hero />
         <Category />
-        <Footer />
       </section>
     </>
   );
