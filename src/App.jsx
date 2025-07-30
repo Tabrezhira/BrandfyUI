@@ -5,14 +5,13 @@ import Alerts from './Pages/Alerts';
 import Navbar from './components/Home/Navbar';
 import Header from './components/Home/Header';
 import Footer from './components/Home/Footer';
-import Test from './components/AlertsComponents/Test';
 
 function App() {
   return (
     <>
     <Navbar/>
     <Header/>
-    <Test/>
+
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />

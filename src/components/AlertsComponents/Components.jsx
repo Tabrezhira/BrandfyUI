@@ -3,7 +3,7 @@ import Navbar from '../Home/Navbar';
 import Header from '../Home/Header';
 import Display from '../../utils/Display';
 import Components1 from './Components1';
-import test from './test';
+import test from './Test';
 function Components() {
   const [viewportSize, setViewportSize] = useState('mobile');
 
