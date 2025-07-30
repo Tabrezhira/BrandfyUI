@@ -7,7 +7,7 @@ import Footer from '../components/Home/Footer';
 function Home() {
   return (
     <>
-      <section className=" mx-auto">
+      <section className=" mx-auto overflow-y-hidden ">
         <Hero />
         <Category />
       </section>

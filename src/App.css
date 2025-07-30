@@ -16,3 +16,8 @@
 .force-mobile .sm\:hidden {
   display: block !important;
 }
+
+body{
+  background: white;
+  overflow-x: hidden;
+}
