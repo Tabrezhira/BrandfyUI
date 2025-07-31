@@ -128,7 +128,7 @@ function Components1({ Component, name }) {
           h-100 w-[${CurrestSize}]
         `}
       >
-        <Display Component={Component}/>
+        {/* <Display Component={Component}/> */}
       </div>
     </section>
   );
