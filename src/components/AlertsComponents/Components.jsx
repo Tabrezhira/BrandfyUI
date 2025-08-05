@@ -19,6 +19,7 @@ function Components() {
     <section className="container mx-auto">
       
     <Components1 Component={test} name={"Base"}/>
+    <Display Component={test} name={"Base"} />
     </section>
   );
 }

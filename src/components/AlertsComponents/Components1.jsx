@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../Home/Navbar';
-import Display from '../../utils/Display';
+import Frame, { FrameContextConsumer } from 'react-frame-component';
+import {componentPreviewHtml} from '../../utils/transformers.js'
+import ReactDOMServer from "react-dom/server";
 function Components1({ Component, name }) {
+  // const jsxString = ReactDOMServer.renderToStaticMarkup(Component);
   const [viewportSize, setViewportSize] = useState('full');
   const [CurrestSize, setCurrentSize] = useState('');
   const [codeFormate, setCodeFormate] = useState('HTML');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [styles, setStyles] = useState('');
+
+  // const html = componentPreviewHtml(jsxString)
+
+  // console.log(html)
 
   const sizes = {
     mobile: 'w-[340px]',
@@ -41,9 +48,37 @@ function Components1({ Component, name }) {
     return () => document.removeEventListener('click', closeDropdown);
   }, []);
 
+  useEffect(() => {
+    // Get all style tags from the parent document
+    const styleTags = document.querySelectorAll('style');
+    const linkTags = document.querySelectorAll('link[rel="stylesheet"]');
+
+    let allStyles = '';
+
+    // Collect styles from style tags
+    styleTags.forEach((tag) => {
+      allStyles += tag.innerHTML;
+    });
+
+    // Collect styles from link tags
+    Promise.all(
+      Array.from(linkTags).map((link) =>
+        fetch(link.href)
+          .then((res) => res.text())
+          .catch((err) => console.error('Error loading stylesheet:', err))
+      )
+    ).then((styles) => {
+      allStyles += styles.join('');
+      setStyles(allStyles);
+    });
+  }, []);
+
+   
   return (
     <section className="container mx-auto px-2 md:px-0 ">
-      <h1 className=" font-bfont text-2xl  mx-2 md:mx-0 font-bold mb-4 mt-5">{name}</h1>
+      <h1 className=" font-bfont text-2xl  mx-2 md:mx-0 font-bold mb-4 mt-5">
+        {name}
+      </h1>
       <div className="flex flex-1 w-full  mx-2 md:mx-0 items-center justify-between ">
         <div className="flex items-center justify-center gap-4">
           <button className="border-1 font-bfont text-md font-medium  text-center shadow border-gray-400 py-2 px-6 rounded-md">
@@ -105,7 +140,7 @@ function Components1({ Component, name }) {
             )}
           </div>
         </div>
-        <div className="lg:flex items-center hidden justify-center text-center gap-2">
+         <div className="lg:flex items-center hidden justify-center text-center gap-2">
           <p className=" text-sm font-bfont">
             @<span className="pl-1 text-sm font-bfont ">{CurrestSize}</span>
           </p>
@@ -128,7 +163,22 @@ function Components1({ Component, name }) {
           h-100 w-[${CurrestSize}]
         `}
       >
-        <Display Component={Component}/>
+        <Frame
+          style={{
+            width: '100%',
+            height: '100%',
+            border: '1px solid #ddd',
+            borderRadius: '0.375rem',
+            backgroundColor: 'white',
+          }}
+          head={
+            <>
+              <style dangerouslySetInnerHTML={{ __html: styles }} />
+            </>
+          }
+        >
+          <FrameContextConsumer>{() => <Component />}</FrameContextConsumer>
+        </Frame>
       </div>
     </section>
   );
