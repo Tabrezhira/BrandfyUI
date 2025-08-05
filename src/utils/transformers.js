@@ -37,3 +37,43 @@ export function componentPreviewHtml(componentJsx) {
     .replace(/\{\s*\/\*/g, '<!--') // comment start
     .replace(/\*\/\s*\}/g, '-->'); // comment end
 }
+
+
+export function componentPreviewVue(componentHtml) {
+  const newComponentHtml = `<template>\n${componentHtml}</template>`
+
+  return newComponentHtml
+    .split('\n')
+    .map((codeLine) => {
+      if (codeLine.includes('<template>') || codeLine.includes('</template>')) {
+        return codeLine.trim()
+      }
+
+      return `  ${codeLine}`
+    })
+    .join('\n')
+}
+
+
+export function componentJsxToVue(componentJsx) {
+  // Step 1: Replace JSX-specific attributes with Vue equivalents
+  let html = componentJsx
+    .replace(/className=/g, 'class=')
+    .replace(/htmlFor=/g, 'for=')
+    .replace(/\{\/\*/g, '<!--')  // JSX comment start
+    .replace(/\*\/\}/g, '-->')   // JSX comment end
+    .replace(/\{(.*?)\}/g, '{{ $1 }}'); // JSX expressions
+
+  // Step 2: Wrap inside <template> tag and indent properly
+  const vueTemplate = `<template>\n${html}</template>`;
+
+  return vueTemplate
+    .split('\n')
+    .map((line) => {
+      if (line.includes('<template>') || line.includes('</template>')) {
+        return line.trim();
+      }
+      return `  ${line}`;
+    })
+    .join('\n');
+}

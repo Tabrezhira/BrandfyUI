@@ -1,18 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Frame, { FrameContextConsumer } from 'react-frame-component';
-import {componentPreviewHtml} from '../../utils/transformers.js'
-import ReactDOMServer from "react-dom/server";
+import {
+  componentPreviewHtml,
+  componentJsxToVue,
+  componentPreviewJsx,
+} from '../utils/transformers.js';
+import ReactDOMServer from 'react-dom/server';
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
+import prettier from 'prettier/standalone';
+import parserHtml from 'prettier/plugins/html';
+import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+
 function Components1({ Component, name }) {
-  // const jsxString = ReactDOMServer.renderToStaticMarkup(Component);
   const [viewportSize, setViewportSize] = useState('full');
-  const [CurrestSize, setCurrentSize] = useState('');
+  const [CurrentSize, setCurrentSize] = useState('');
   const [codeFormate, setCodeFormate] = useState('HTML');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [styles, setStyles] = useState('');
+  const [formattedHtml, setFormattedHtml] = useState('');
+  const [codeView, setCodeView] = useState(false);
+  const [copyText, setCopyText] = useState('Copy');
 
-  // const html = componentPreviewHtml(jsxString)
+  const jsxElement = <Component />;
+  const staticHtml = ReactDOMServer.renderToStaticMarkup(jsxElement);
 
-  // console.log(html)
 
   const sizes = {
     mobile: 'w-[340px]',
@@ -35,18 +46,19 @@ function Components1({ Component, name }) {
       setCurrentSize('100%');
     }
   }, [viewportSize]);
+  +(
+    // Close dropdown when clicking outside
+    useEffect(() => {
+      const closeDropdown = (e) => {
+        if (!e.target.closest('.dropdown-container')) {
+          setIsDropdownOpen(false);
+        }
+      };
 
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const closeDropdown = (e) => {
-      if (!e.target.closest('.dropdown-container')) {
-        setIsDropdownOpen(false);
-      }
-    };
-
-    document.addEventListener('click', closeDropdown);
-    return () => document.removeEventListener('click', closeDropdown);
-  }, []);
+      document.addEventListener('click', closeDropdown);
+      return () => document.removeEventListener('click', closeDropdown);
+    }, [])
+  );
 
   useEffect(() => {
     // Get all style tags from the parent document
@@ -73,7 +85,47 @@ function Components1({ Component, name }) {
     });
   }, []);
 
-   
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(formattedHtml);
+      setCopyText('Copied!');
+      setTimeout(() => setCopyText('Copy'), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+      setCopyText('Failed');
+    }
+  };
+
+  useEffect(() => {
+    let htmlConverted ='';
+    switch (codeFormate) {
+      case 'HTML':
+        htmlConverted = componentPreviewHtml(staticHtml);
+        break;
+
+      case 'Vue':
+         htmlConverted = componentJsxToVue(staticHtml);
+        break;
+
+      case 'JSX':
+         htmlConverted = componentPreviewJsx(staticHtml);
+        break;
+            default:
+      console.warn('Unknown format:', codeFormate);
+      return; // exit early if no valid format
+    }
+    if (!htmlConverted) return;
+    async function formatHtml() {
+      const pretty = await prettier.format(htmlConverted, {
+        parser: 'html',
+        plugins: [parserHtml],
+      });
+      setFormattedHtml(pretty);
+    }
+
+    formatHtml();
+  }, [codeFormate,Component]);
+
   return (
     <section className="container mx-auto px-2 md:px-0 ">
       <h1 className=" font-bfont text-2xl  mx-2 md:mx-0 font-bold mb-4 mt-5">
@@ -81,11 +133,19 @@ function Components1({ Component, name }) {
       </h1>
       <div className="flex flex-1 w-full  mx-2 md:mx-0 items-center justify-between ">
         <div className="flex items-center justify-center gap-4">
-          <button className="border-1 font-bfont text-md font-medium  text-center shadow border-gray-400 py-2 px-6 rounded-md">
-            View
+          <button
+            onClick={() => {
+              setCodeView(!codeView);
+            }}
+            className="border-1 font-bfont text-md font-medium  text-center shadow border-gray-400 py-2 px-6 rounded-md"
+          >
+            {codeView ? 'Code' : 'View'}
           </button>
-          <button className="border-1 font-bfont text-md font-medium  text-center shadow border-gray-400 py-2 px-6 rounded-md">
-            Copy
+          <button
+            onClick={handleCopy}
+            className="border-1 font-bfont text-md font-medium  text-center shadow border-gray-400 py-2 px-6 rounded-md"
+          >
+            {copyText}
           </button>
           <div className="relative dropdown-container">
             <button
@@ -140,9 +200,9 @@ function Components1({ Component, name }) {
             )}
           </div>
         </div>
-         <div className="lg:flex items-center hidden justify-center text-center gap-2">
+        <div className="lg:flex items-center hidden justify-center text-center gap-2">
           <p className=" text-sm font-bfont">
-            @<span className="pl-1 text-sm font-bfont ">{CurrestSize}</span>
+            @<span className="pl-1 text-sm font-bfont ">{CurrentSize}</span>
           </p>
           {Object.keys(sizes).map((size) => (
             <button
@@ -156,30 +216,60 @@ function Components1({ Component, name }) {
           ))}
         </div>
       </div>
-      <div
-        className={`
+      {!codeView && (
+        <div
+          className={`
           flex justify-center mx-auto border-1 rounded-md border-gray-400 mt-4 
           overflow-x-auto transition-all duration-300 ease-in-out
-          h-100 w-[${CurrestSize}]
+          h-100 w-[${CurrentSize}]
         `}
-      >
-        <Frame
-          style={{
-            width: '100%',
-            height: '100%',
-            border: '1px solid #ddd',
-            borderRadius: '0.375rem',
-            backgroundColor: 'white',
-          }}
-          head={
-            <>
-              <style dangerouslySetInnerHTML={{ __html: styles }} />
-            </>
-          }
         >
-          <FrameContextConsumer>{() => <Component />}</FrameContextConsumer>
-        </Frame>
-      </div>
+          <Frame
+            style={{
+              width: '100%',
+              height: '100%',
+              border: '1px solid #ddd',
+              borderRadius: '0.375rem',
+              backgroundColor: 'white',
+            }}
+            head={
+              <>
+                <style dangerouslySetInnerHTML={{ __html: styles }} />
+              </>
+            }
+          >
+            <FrameContextConsumer>{() => <Component />}</FrameContextConsumer>
+          </Frame>
+        </div>
+      )}
+      {codeView && (
+        <div
+          className={`
+          flex justify-center mx-auto border-1 rounded-md border-gray-400 mt-4 
+          overflow-x-auto transition-all duration-300 ease-in-out
+          h-100 w-full
+        `}
+        >
+          {formattedHtml ? (
+            <SyntaxHighlighter
+              language="html"
+              style={atomOneDark}
+              customStyle={{
+                borderRadius: '10px',
+                padding: '16px',
+                fontSize: '14px',
+                background: '#282c34', // Optional: override dark background
+                overflowX: 'auto',
+              }}
+              showLineNumbers={true} // Optional: add line numbers
+            >
+              {formattedHtml}
+            </SyntaxHighlighter>
+          ) : (
+            <p>Loading formatted HTML...</p>
+          )}
+        </div>
+      )}
     </section>
   );
 }
