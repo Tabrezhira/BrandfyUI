@@ -2,7 +2,7 @@ import { FaGithub } from 'react-icons/fa';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { MdMenu } from 'react-icons/md';
-
+import { Link } from 'react-router-dom';
 function Navbar() {
   const [stars, setStars] = useState(null);
   // Example of using axios to fetch data
@@ -28,14 +28,13 @@ function Navbar() {
       <div className="container  mx-auto flex w-full items-center justify-between gap-4">
         <ul className="flex items-center gap-4 text-sm font-medium ">
           <li className="cursor-pointer">
-            BrandfyUl
-            <span aria-hidden="true" role="img">
-              🚀
-            </span>
+            <Link to="/" className="flex items-center gap-1">
+              BrandfyUl 🚀
+            </Link>
           </li>
-          <li className="cursor-pointer hidden md:block">Application</li>
-          <li className="cursor-pointer hidden  md:block">Marketing</li>
-          <li className="cursor-pointer hidden  md:block">Blog</li>
+          <li className="cursor-pointer hidden md:block"><Link to="/application">Application</Link></li>
+          <li className="cursor-pointer hidden  md:block"> <Link to="/marketing">Marketing</Link></li>
+          <li className="cursor-pointer hidden  md:block"><Link to="/blog">Blog</Link></li>
         </ul>
 
         <div className="flex items-center gap-2 md:gap-4 relative">
@@ -47,7 +46,7 @@ function Navbar() {
             />
           </div>
           <div className="flex items-center gap-1 text-lg font-semibold">
-            <FaGithub className=" cursor-pointer text-2xl " />
+            <Link to="https://github.com/Tabrezhira"><FaGithub className=" cursor-pointer text-2xl " /></Link>
             {/* <span className='text-gray-600 text-sm font-medium'>
               {stars !== null ? stars : 'Loading...'}
             </span> */}
@@ -63,13 +62,13 @@ function Navbar() {
             <div className="absolute top-16 left-0 w-full bg-white rounded-md shadow-lg border-t border-gray-200 z-50">
               <ul className="flex flex-col items-start justify-center w-full">
                 <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer w-full">
-                  Application
+                 <Link to="/application">Application</Link>
                 </li>
                 <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer w-full">
-                  Marketing
+                  <Link to="/marketing">Marketing</Link>
                 </li>
                 <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer w-full">
-                  Blog
+                 <Link to="/blog">Blog</Link>
                 </li>
               </ul>
             </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom';
 const datas = [
   { icon: "📣", Components: 5, name: "Alerts" },
   { icon: "🐷", Components: 10, name: "Badges" },
@@ -37,11 +37,13 @@ function Application() {
     <h1 className='  font-bfont text-xl md:text-2xl p-2 md:p-0 font-bold'>Application Components</h1>
     <div className='container gap-2  md:gap-4 grid p-2 md:p-0 md:grid-cols-3 mt-4'>
         {datas.map((data, i) => (
+          <Link to={data.name}>
             <div key={i} className='h-36 cursor-pointer border-1 border-gray-300 rounded-md p-6'>
                 <span className=' text-xl font-bfont'>{data.icon}</span>
                 <p className='mb-1 mt-4 text-sm font-bfont'><span>{data.Components}</span> Components</p>
                 <h1 className='text-lg font-bfont font-semibold '>{data.name}</h1>
             </div>
+            </Link>
         ))}
     </div>                                                                                                                       
    </section>

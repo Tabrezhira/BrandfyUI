@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-import Navbar from '../components/Home/Navbar';
-import Header from '../components/Home/Header';
-import Display from '../utils/Display';
-import Components1 from './Components1';
-import test from '../components/AlertsComponents/Test';
+
 function Components() {
   const [viewportSize, setViewportSize] = useState('mobile');
 

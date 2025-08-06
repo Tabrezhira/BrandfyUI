@@ -5,20 +5,28 @@ import Alerts from './Pages/Alerts';
 import Navbar from './components/Home/Navbar';
 import Header from './components/Home/Header';
 import Footer from './components/Home/Footer';
+import Application from './Pages/Application';
+import Marketing from './Pages/Marketing';
+import Badges from './Pages/Badges';
 
 function App() {
   return (
     <>
-    <Navbar/>
-    <Header/>
 
     <Router>
+          <Navbar/>
+    <Header/>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/alerts" element={<Alerts />} />
+        <Route path="/Alerts" element={<Alerts />} />
+        <Route path="/Badges" element={<Badges />} />
+        <Route path="/" element={<Alerts />} />
+        <Route path="/application" element={<Application/>} />
+        <Route path="/marketing" element={<Marketing/>} />
       </Routes>
+          <Footer/>
     </Router>
-    <Footer/>
+
     </>
   );
 }

@@ -1,15 +1,27 @@
 import { useEffect, useState } from 'react';
 import Frame, { FrameContextConsumer } from 'react-frame-component';
-import { componentPreviewHtml, componentJsxToVue, componentPreviewJsx } from './transformers.js';
+import {
+  componentPreviewHtml,
+  componentJsxToVue,
+  componentPreviewJsx,
+} from './transformers.js';
 import ReactDOMServer from 'react-dom/server';
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
 import prettier from 'prettier/standalone';
 import parserHtml from 'prettier/plugins/html';
 import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { Link } from 'react-router-dom';
 
-function Display({ Component, name, previewDark }) {
-
-   const [viewportSize, setViewportSize] = useState('full');
+function Display({
+  Component,
+  name,
+  previewDark,
+  previewWidth,
+  previewHeight,
+  plainCode,
+  pHeight,
+}) {
+  const [viewportSize, setViewportSize] = useState('full');
   const [currentSize, setCurrentSize] = useState('100%');
   const [codeFormat, setCodeFormat] = useState('HTML');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -17,10 +29,10 @@ function Display({ Component, name, previewDark }) {
   const [formattedHtml, setFormattedHtml] = useState('');
   const [codeView, setCodeView] = useState(false);
   const [copyText, setCopyText] = useState('Copy');
-  const iframeTheme = previewDark ? 'bg-gray-900' : 'bg-white'
+  const iframeTheme = previewDark ? 'bg-gray-900' : 'bg-white';
 
-  const jsxElement = <Component />;
-  const staticHtml = ReactDOMServer.renderToStaticMarkup(jsxElement);
+  // const jsxElement = <Component />;
+  // const staticHtml = ReactDOMServer.renderToStaticMarkup(jsxElement);
 
   const sizes = {
     mobile: 'w-[340px]',
@@ -57,17 +69,19 @@ function Display({ Component, name, previewDark }) {
   // Collect styles from document on mount
   useEffect(() => {
     const styleTags = Array.from(document.querySelectorAll('style'));
-    const linkTags = Array.from(document.querySelectorAll('link[rel="stylesheet"]'));
+    const linkTags = Array.from(
+      document.querySelectorAll('link[rel="stylesheet"]')
+    );
 
-    let allStyles = styleTags.map(tag => tag.innerHTML).join('');
+    let allStyles = styleTags.map((tag) => tag.innerHTML).join('');
 
     Promise.all(
-      linkTags.map(link =>
+      linkTags.map((link) =>
         fetch(link.href)
-          .then(res => res.text())
-          .catch(err => console.error('Error loading stylesheet:', err))
+          .then((res) => res.text())
+          .catch((err) => console.error('Error loading stylesheet:', err))
       )
-    ).then(styles => {
+    ).then((styles) => {
       allStyles += styles.join('');
       setStyles(allStyles);
     });
@@ -89,13 +103,13 @@ function Display({ Component, name, previewDark }) {
     let htmlConverted = '';
     switch (codeFormat) {
       case 'HTML':
-        htmlConverted = componentPreviewHtml(staticHtml);
+        htmlConverted = plainCode;
         break;
       case 'Vue':
-        htmlConverted = componentJsxToVue(staticHtml);
+        htmlConverted = componentJsxToVue(plainCode);
         break;
       case 'JSX':
-        htmlConverted = componentPreviewJsx(staticHtml);
+        htmlConverted = componentPreviewJsx(plainCode);
         break;
       default:
         console.warn('Unknown format:', codeFormat);
@@ -115,11 +129,11 @@ function Display({ Component, name, previewDark }) {
   }, [codeFormat, Component]);
 
   return (
-    <section className="container mx-auto px-2 md:px-0">
-      <h1 className="font-bfont text-2xl mx-2 md:mx-0 font-bold mb-4 mt-5">
+    <section className="container mx-auto  md:px-0">
+      <h1 className="font-bfont text-2xl  md:mx-0 font-bold mb-4 mt-5">
         {name}
       </h1>
-      <div className="flex flex-1 w-full mx-2 md:mx-0 items-center justify-between">
+      <div className="flex flex-1 w-full  md:mx-0 items-center justify-between">
         <div className="flex items-center justify-center gap-4">
           <button
             onClick={() => setCodeView(!codeView)}
@@ -155,7 +169,7 @@ function Display({ Component, name, previewDark }) {
             </button>
             {isDropdownOpen && (
               <ul className="absolute top-11 border-1 font-bfont text-md font-medium text-center shadow-lg border-gray-200 rounded-md bg-white min-w-[120px] py-1 z-10">
-                {['HTML', 'JSX', 'Vue'].map(format => (
+                {['HTML', 'JSX', 'Vue'].map((format) => (
                   <li
                     key={format}
                     className="cursor-pointer px-4 py-2 hover:bg-gray-50 transition-colors duration-150 border-b border-gray-100"
@@ -175,7 +189,7 @@ function Display({ Component, name, previewDark }) {
           <p className="text-sm font-bfont">
             @<span className="pl-1 text-sm font-bfont">{currentSize}</span>
           </p>
-          {Object.keys(sizes).map(size => (
+          {Object.keys(sizes).map((size) => (
             <button
               key={size}
               className={`border-1 font-bfont text-md font-medium text-center shadow border-gray-400 py-2 px-4 rounded-md ${
@@ -190,39 +204,16 @@ function Display({ Component, name, previewDark }) {
       </div>
       {!codeView && (
         <div
-          className={` flex justify-center mx-auto border-1 rounded-md border-gray-400 mt-4 overflow-x-auto transition-all duration-300 ease-in-out h-100 w-[${currentSize}]`}
+          className={`  flex justify-center mx-auto border-1 rounded-md border-gray-400 mt-4 overflow-hidden overflow-x-auto transition-all duration-300 ease-in-out ${previewHeight} w-[${currentSize}]`}
         >
-          <Frame
-           className={`w-full rounded-md ring ring-gray-300 duration-500 lg:transition-[max-width] ${iframeTheme} `}
-            style={{
-              width: '100%',
-              height: '100%',
-              border: '1px solid #ddd',
-              borderRadius: '0.375rem',
-              backgroundColor: 'white',
-            }}
+          <iframe
+            key={name}
+            className={`w-full rounded-md ring ring-gray-300 duration-500 lg:transition-[max-width] ${iframeTheme} ${previewHeight} overflow-hidden`}
             loading="lazy"
-            title=""
-            
-             head={
-    <>
-      <style dangerouslySetInnerHTML={{ __html: styles }} />
-      {previewDark && (
-        <style>{`
-          body {
-            background-color: #111827; /* Tailwind's bg-gray-900 */
-            color: white;
-          }
-        `}</style>
-      )}
-    </>
-  }
-
-
-
-          >
-            <FrameContextConsumer>{() => <Component />}</FrameContextConsumer>
-          </Frame>
+            srcDoc={Component}
+            style={{ maxWidth: previewWidth }}
+            title={name}
+          ></iframe>
         </div>
       )}
       {codeView && (
@@ -234,7 +225,8 @@ function Display({ Component, name, previewDark }) {
               language="html"
               style={atomOneDark}
               customStyle={{
-                borderRadius: '10px',
+                width: '100%',
+              
                 padding: '16px',
                 fontSize: '14px',
                 background: '#282c34',
@@ -249,8 +241,14 @@ function Display({ Component, name, previewDark }) {
           )}
         </div>
       )}
+      <p className="mt-2 font-bfont text-sm text-gray-500">
+        Created by{' '}
+        <span className=" border-b-1 text-gray-700 font-semibold border-gray-400 ">
+          <Link to="https://github.com/Tabrezhira">TabrezHakimji</Link>
+        </span>
+      </p>
     </section>
   );
 }
 
-export default Display
+export default Display;
