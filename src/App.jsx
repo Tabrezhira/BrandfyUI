@@ -37,6 +37,22 @@ import Timelines from './Pages/Application/Timelines';
 import Toggles from './Pages/Application/Toggles';
 import VerticalMenu from './Pages/Application/VerticalMenu';
 
+
+import Announcements from './Pages/Marketing/Announcements';
+import Banners from './Pages/Marketing/Banners';
+import BlogCards from './Pages/Marketing/BlogCards';
+import Buttons from './Pages/Marketing/Buttons';
+import Cards from './Pages/Marketing/Cards';
+import Carts from './Pages/Marketing/Carts';
+import CTAs from './Pages/Marketing/CTAs';
+import FAQs from './Pages/Marketing/FAQs';
+import Footers from './Pages/Marketing/Footers';
+import HeaderComponent from './Pages/Marketing/HeaderComponent'; // Renamed to avoid conflict
+import Pricing from './Pages/Marketing/Pricing';
+import ProductCards from './Pages/Marketing/ProductCards';
+import ProductCollections from './Pages/Marketing/ProductCollections';
+import Sections from './Pages/Marketing/Sections';
+
 function App() {
   return (
     <Router>
@@ -75,6 +91,22 @@ function App() {
         <Route path="/application/Timelines" element={<Timelines />} />
         <Route path="/application/Toggles" element={<Toggles />} />
         <Route path="/application/Vertical Menu" element={<VerticalMenu />} />
+
+
+        <Route path="/marketing/Announcements" element={<Announcements />} />
+        <Route path="/marketing/Banners" element={<Banners />} />
+        <Route path="/marketing/Blog Cards" element={<BlogCards />} />
+        <Route path="/marketing/Buttons" element={<Buttons />} />
+        <Route path="/marketing/Cards" element={<Cards />} />
+        <Route path="/marketing/Carts" element={<Carts />} />
+        <Route path="/marketing/CTAs" element={<CTAs />} />
+        <Route path="/marketing/FAQs" element={<FAQs />} />
+        <Route path="/marketing/Footers" element={<Footers />} />
+        <Route path="/marketing/Header" element={<HeaderComponent />} />
+        <Route path="/marketing/Pricing" element={<Pricing />} />
+        <Route path="/marketing/Product Cards" element={<ProductCards />} />
+        <Route path="/marketing/Product Collections" element={<ProductCollections />} />
+        <Route path="/marketing/Sections" element={<Sections />} />
       </Routes>
 
       <Footer />
