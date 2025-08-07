@@ -129,7 +129,7 @@ function Display({
   }, [codeFormat, Component]);
 
   return (
-    <section className="container mx-auto  md:px-0">
+    <section className="container mx-auto mt-2  md:px-0">
       <h1 className="font-bfont text-2xl  md:mx-0 font-bold mb-4 mt-5">
         {name}
       </h1>

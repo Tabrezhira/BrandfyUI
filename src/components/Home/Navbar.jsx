@@ -47,9 +47,6 @@ function Navbar() {
           </div>
           <div className="flex items-center gap-1 text-lg font-semibold">
             <Link to="https://github.com/Tabrezhira"><FaGithub className=" cursor-pointer text-2xl " /></Link>
-            {/* <span className='text-gray-600 text-sm font-medium'>
-              {stars !== null ? stars : 'Loading...'}
-            </span> */}
           </div>
           <div>
             <MdMenu
