@@ -1,19 +1,31 @@
 import { FaGithub } from 'react-icons/fa';
-
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { MdMenu } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import Search from '../../utils/Search';
 
 function Navbar() {
-
-
   const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  // Close the menu when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
-    <nav className=" sticky top-0 z-50 bg-white w-full  h-20 flex items-center justify-center border-b-1 border-gray-200  px-4 font-bfont">
-      <div className="container  mx-auto flex w-full items-center justify-between gap-4">
-        <ul className="flex items-center gap-4 text-sm font-medium ">
+    <nav className="sticky top-0 z-50 bg-white w-full h-20 flex items-center justify-center border-b-1 border-gray-200 px-4 font-bfont">
+      <div className="container mx-auto flex w-full items-center justify-between gap-4">
+        <ul className="flex items-center gap-4 text-sm font-medium">
           <li className="cursor-pointer">
             <Link to="/" className="flex items-center gap-1">
               BrandfyUl 🚀
@@ -22,34 +34,24 @@ function Navbar() {
           <li className="cursor-pointer hidden md:block">
             <Link to="/application">Application</Link>
           </li>
-          <li className="cursor-pointer hidden  md:block">
-            {' '}
+          <li className="cursor-pointer hidden md:block">
             <Link to="/marketing">Marketing</Link>
-          </li>
-          <li className="cursor-pointer hidden  md:block">
-            {/* <Link to="/blog">Block</Link> */}
           </li>
         </ul>
 
-        <div className="flex items-center gap-2 md:gap-4 relative">
-          {/* <div className=" border-1  relative shadow-sm  border-gray-300 rounded-md p-1 md:p-2 md:px-6 px-4 py-2 flex items-center md:gap-2"> */}
-            {/* <input
-              className="w-30 md:w-50  border-none outline-none bg-transparent shadow-none focus:ring-0"
-              placeholder="Search components"
+        <div className="flex items-center gap-2 md:gap-4 relative" ref={dropdownRef}>
+          <Search />
 
-              type="text"
-            /> */}
-            <Search/>
-          {/* </div> */}
           <div className="flex items-center gap-1 text-lg font-semibold">
             <Link to="https://github.com/Tabrezhira">
-              <FaGithub className=" cursor-pointer text-2xl " />
+              <FaGithub className="cursor-pointer text-2xl" />
             </Link>
           </div>
+
           <div>
             <MdMenu
-              className=" text-2xl md:hidden"
-              onClick={() => setIsOpen(!isOpen)}
+              className="text-2xl md:hidden"
+              onClick={() => setIsOpen((prev) => !prev)}
             />
           </div>
 
@@ -62,15 +64,11 @@ function Navbar() {
                 <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer w-full">
                   <Link to="/marketing">Marketing</Link>
                 </li>
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer w-full">
-                  {/* <Link to="/blog">Block</Link> */}
-                </li>
               </ul>
             </div>
           )}
         </div>
       </div>
-      {/* <div className='w-full h-[1px] bg-gray-200'/> */}
     </nav>
   );
 }
