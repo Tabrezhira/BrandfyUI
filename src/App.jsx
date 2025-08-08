@@ -37,7 +37,6 @@ import Timelines from './Pages/Application/Timelines';
 import Toggles from './Pages/Application/Toggles';
 import VerticalMenu from './Pages/Application/VerticalMenu';
 
-
 import Announcements from './Pages/Marketing/Announcements';
 import Banners from './Pages/Marketing/Banners';
 import BlogCards from './Pages/Marketing/BlogCards';
@@ -52,7 +51,8 @@ import Pricing from './Pages/Marketing/Pricing';
 import ProductCards from './Pages/Marketing/ProductCards';
 import ProductCollections from './Pages/Marketing/ProductCollections';
 import Sections from './Pages/Marketing/Sections';
-
+import Faqs from './Pages/Faqs';
+import Acknowledgements from './Pages/Acknowledgements';
 
 function App() {
   return (
@@ -80,7 +80,10 @@ function App() {
         <Route path="/application/Media" element={<Media />} />
         <Route path="/application/Modals" element={<Modals />} />
         <Route path="/application/Pagination" element={<Pagination />} />
-        <Route path="/application/Quantity Inputs" element={<QuantityInputs />} />
+        <Route
+          path="/application/Quantity Inputs"
+          element={<QuantityInputs />}
+        />
         <Route path="/application/Radio Groups" element={<RadioGroups />} />
         <Route path="/application/Selects" element={<Selects />} />
         <Route path="/application/Side Menu" element={<SideMenu />} />
@@ -91,7 +94,6 @@ function App() {
         <Route path="/application/Timelines" element={<Timelines />} />
         <Route path="/application/Toggles" element={<Toggles />} />
         <Route path="/application/Vertical Menu" element={<VerticalMenu />} />
-
 
         <Route path="/marketing/Announcements" element={<Announcements />} />
         <Route path="/marketing/Banners" element={<Banners />} />
@@ -105,8 +107,14 @@ function App() {
         <Route path="/marketing/Header" element={<HeaderComponent />} />
         <Route path="/marketing/Pricing" element={<Pricing />} />
         <Route path="/marketing/Product Cards" element={<ProductCards />} />
-        <Route path="/marketing/Product Collections" element={<ProductCollections />} />
+        <Route
+          path="/marketing/Product Collections"
+          element={<ProductCollections />}
+        />
         <Route path="/marketing/Sections" element={<Sections />} />
+
+        <Route path="/faqs" element={<Faqs />} />
+        <Route path="/Acknowledgements" element={<Acknowledgements />} />
       </Routes>
 
       <Footer />

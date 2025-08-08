@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Frame, { FrameContextConsumer } from 'react-frame-component';
 import {
-  componentPreviewHtml,
+  // componentPreviewHtml,
   componentJsxToVue,
   componentPreviewJsx,
 } from './transformers.js';
@@ -19,13 +19,13 @@ function Display({
   previewWidth,
   previewHeight,
   plainCode,
-  pHeight,
+  
 }) {
   const [viewportSize, setViewportSize] = useState('full');
   const [currentSize, setCurrentSize] = useState('100%');
   const [codeFormat, setCodeFormat] = useState('HTML');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [styles, setStyles] = useState('');
+  // const [styles, setStyles] = useState('');
   const [formattedHtml, setFormattedHtml] = useState('');
   const [codeView, setCodeView] = useState(false);
   const [copyText, setCopyText] = useState('Copy');

@@ -178,7 +178,7 @@ function Search() {
       />
 
       {query && filtered.length > 0 && (
-        <ul className="absolute top-16 left-1/2 -translate-x-1/2 w-60 bg-white border border-gray-300 shadow-sm rounded-md z-10 max-h-64 overflow-y-auto">
+        <ul className="absolute top-12 left-1/2 -translate-x-1/2 w-60 bg-white border border-gray-300 shadow-sm rounded-md z-10 max-h-64 overflow-y-auto">
           {filtered.slice(0, 5).map((comp) => (
             <li key={comp.name}>
               <a
@@ -199,7 +199,7 @@ function Search() {
       )}
 
       {query && filtered.length === 0 && (
-        <div className="absolute top-16 left-1/2 -translate-x-1/2 w-60 h-20 flex items-center justify-center font-bfont font-semibold bg-white border border-gray-300 shadow-sm rounded-md z-10">
+        <div className="absolute top-12 left-1/2 -translate-x-1/2 w-60 h-20 flex items-center justify-center font-bfont font-semibold bg-white border border-gray-300 shadow-sm rounded-md z-10">
           No results for "{query}"
         </div>
       )}

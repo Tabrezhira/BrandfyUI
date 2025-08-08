@@ -1,27 +1,27 @@
 import { FaGithub } from 'react-icons/fa';
-import axios from 'axios';
+
 import { useEffect, useState } from 'react';
 import { MdMenu } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import Search from '../../utils/Search';
 
 function Navbar() {
-  const [stars, setStars] = useState(null);
+  // const [stars, setStars] = useState(null);
   // Example of using axios to fetch data
-  useEffect(() => {
-    const fetchStars = async () => {
-      try {
-        const response = await axios.get(
-          'https://api.github.com/repos/TabrezHira/Full-Stack-Book-Store-Application'
-        );
-        setStars(response.data.stargazers_count);
-      } catch (error) {
-        console.error('Error fetching GitHub stars:', error.message);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchStars = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         'https://api.github.com/repos/TabrezHira/Full-Stack-Book-Store-Application'
+  //       );
+  //       setStars(response.data.stargazers_count);
+  //     } catch (error) {
+  //       console.error('Error fetching GitHub stars:', error.message);
+  //     }
+  //   };
 
-    fetchStars();
-  }, []);
+  //   fetchStars();
+  // }, []);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -42,7 +42,7 @@ function Navbar() {
             <Link to="/marketing">Marketing</Link>
           </li>
           <li className="cursor-pointer hidden  md:block">
-            <Link to="/blog">Blog</Link>
+            {/* <Link to="/blog">Block</Link> */}
           </li>
         </ul>
 
@@ -78,7 +78,7 @@ function Navbar() {
                   <Link to="/marketing">Marketing</Link>
                 </li>
                 <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer w-full">
-                  <Link to="/blog">Blog</Link>
+                  {/* <Link to="/blog">Block</Link> */}
                 </li>
               </ul>
             </div>

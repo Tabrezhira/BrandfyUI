@@ -89,20 +89,20 @@ export function componentPreviewJsx(componentHtml) {
 //     .replace(/\*\/\s*\}/g, '-->'); // comment end
 // }
 
-export function componentPreviewVue(componentHtml) {
-  const newComponentHtml = `<template>\n${componentHtml}</template>`;
+// export function componentPreviewVue(componentHtml) {
+//   const newComponentHtml = `<template>\n${componentHtml}</template>`;
 
-  return newComponentHtml
-    .split('\n')
-    .map((codeLine) => {
-      if (codeLine.includes('<template>') || codeLine.includes('</template>')) {
-        return codeLine.trim();
-      }
+//   return newComponentHtml
+//     .split('\n')
+//     .map((codeLine) => {
+//       if (codeLine.includes('<template>') || codeLine.includes('</template>')) {
+//         return codeLine.trim();
+//       }
 
-      return `  ${codeLine}`;
-    })
-    .join('\n');
-}
+//       return `  ${codeLine}`;
+//     })
+//     .join('\n');
+// }
 
 export function componentJsxToVue(componentJsx) {
   // Step 1: Replace JSX-specific attributes with Vue equivalents
