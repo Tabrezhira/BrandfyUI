@@ -167,47 +167,45 @@ function Search() {
       c.terms.some((term) => term.toLowerCase().includes(query.toLowerCase()))
   );
 
- return (
-  <div className=" border-1  relative shadow-sm  border-gray-300 rounded-md p-1 md:p-0 md:px-6 px-6 py-2 flex items-center md:gap-2">
-   {/* relative w-30 md:w-50 mx-auto    */}
-    <input
-      type="text"
-      placeholder="Search components..."
-      value={query}
-      onChange={(e) => setQuery(e.target.value)}
-      className="w-30 md:w-50 border-none outline-none md:px-3  px-0 py-0 rounded-md  focus:ring-0"
-      // w-30 md:w-50  border-none outline-none bg-transparent shadow-none focus:ring-0
-    />
+  return (
+    <div className="border-1 relative shadow-sm border-gray-300 rounded-md p-1 md:p-2 md:px-6 px-2 py-2 md:py-2 flex items-center md:gap-2">
+      <input
+        type="text"
+        placeholder="Search components..."
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        className="w-40 md:w-50 border-none outline-none md:px-3 px-0 py-0 rounded-md focus:ring-0"
+      />
 
-    {query && filtered.length > 0 && (
-      <ul className="absolute top-16 left-1/2 -translate-x-1/2 w-60 bg-white border border-gray-300 shadow-sm rounded-md z-10">
-        {filtered.map((comp) => (
-          <li key={comp.name}>
-            <a
-              href={comp.link}
-              className="flex items-center justify-between p-2 hover:bg-gray-100 transition"
-            >
-              <div className="flex items-center space-x-2">
-                {comp.icon && <span className="text-xl">{comp.icon}</span>}
-                <span className="font-semibold">{comp.name}</span>
-              </div>
-              <span className="text-xs text-gray-500 capitalize">
-                {comp.category}
-              </span>
-            </a>
-          </li>
-        ))}
-      </ul>
-    )}
+      {query && filtered.length > 0 && (
+        <ul className="absolute top-16 left-1/2 -translate-x-1/2 w-60 bg-white border border-gray-300 shadow-sm rounded-md z-10 max-h-64 overflow-y-auto">
+          {filtered.slice(0, 5).map((comp) => (
+            <li key={comp.name}>
+              <a
+                href={comp.link}
+                className="flex items-center justify-between p-2 hover:bg-gray-100 transition"
+              >
+                <div className="flex items-center space-x-2">
+                  {comp.icon && <span className="text-xl">{comp.icon}</span>}
+                  <span className="font-semibold">{comp.name}</span>
+                </div>
+                <span className="text-xs text-gray-500 capitalize">
+                  {comp.category}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
 
-    {query && filtered.length === 0 && (
-      <div className="absolute top-16 left-1/2 -translate-x-1/2 w-60 h-20 flex items-center justify-center font-bfont font-semibold bg-white border border-gray-300 shadow-sm rounded-md z-10">
-        No results for "{query}"
-      </div>
-    )} 
-  </div>
-);
-
+      {query && filtered.length === 0 && (
+        <div className="absolute top-16 left-1/2 -translate-x-1/2 w-60 h-20 flex items-center justify-center font-bfont font-semibold bg-white border border-gray-300 shadow-sm rounded-md z-10">
+          No results for "{query}"
+        </div>
+      )}
+    </div>
+  );
 }
+
 
 export default Search;
