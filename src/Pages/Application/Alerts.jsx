@@ -1,5 +1,5 @@
 
-const components = import.meta.glob('/public/application/alerts/*.html', {
+const components = import.meta.glob('../../components/AllComponents/application/alerts/*.html', {
   eager: true,
   as: 'raw',
 });
