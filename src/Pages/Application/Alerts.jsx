@@ -8,7 +8,7 @@ const components = import.meta.glob(
   }
 );
 
-console.log(components)
+
 import Display from '../../utils/Display.jsx';
 import { componentPreviewHtml } from '../../utils/transformers.js';
 

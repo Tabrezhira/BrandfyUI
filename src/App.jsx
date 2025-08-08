@@ -53,6 +53,7 @@ import ProductCollections from './Pages/Marketing/ProductCollections';
 import Sections from './Pages/Marketing/Sections';
 import Faqs from './Pages/Faqs';
 import Acknowledgements from './Pages/Acknowledgements';
+import NotFound from './Pages/notfound/NotFound';
 
 function App() {
   return (
@@ -115,6 +116,7 @@ function App() {
 
         <Route path="/faqs" element={<Faqs />} />
         <Route path="/Acknowledgements" element={<Acknowledgements />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       <Footer />

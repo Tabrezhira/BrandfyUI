@@ -22,7 +22,7 @@ const searchableComponents = [
   {
     name: 'Button Groups',
     terms: ['button', 'group', 'action'],
-    link: '/application/ButtonGroups',
+    link: '/application/Button Groups',
     category: 'application',
   },
   {
@@ -34,7 +34,7 @@ const searchableComponents = [
   {
     name: 'Details Lists',
     terms: ['data', 'details', 'list'],
-    link: '/application/DetailsLists',
+    link: '/application/Details Lists',
     category: 'application',
   },
   {
@@ -52,7 +52,7 @@ const searchableComponents = [
   {
     name: 'File Uploaders',
     terms: ['file', 'form', 'upload'],
-    link: '/application/FileUploaders',
+    link: '/application/File Uploaders',
     category: 'application',
   },
   {
@@ -94,13 +94,13 @@ const searchableComponents = [
   {
     name: 'Quantity Inputs',
     terms: ['input', 'quantity', 'ecommerce'],
-    link: '/application/QuantityInputs',
+    link: '/application/Quantity Inputs',
     category: 'application',
   },
   {
     name: 'Radio Groups',
     terms: ['radio', 'group', 'form'],
-    link: '/application/RadioGroups',
+    link: '/application/Radio Groups',
     category: 'application',
   },
   {
@@ -112,7 +112,7 @@ const searchableComponents = [
   {
     name: 'Side Menu',
     terms: ['navigation', 'menu', 'sidebar'],
-    link: '/application/SideMenu',
+    link: '/application/Side Menu',
     category: 'application',
   },
   {
@@ -154,8 +154,92 @@ const searchableComponents = [
   {
     name: 'Vertical Menu',
     terms: ['menu', 'navigation', 'sidebar'],
-    link: '/application/VerticalMenu',
+    link: '/application/Vertical Menu',
     category: 'application',
+  },
+  {
+    name: 'Announcements',
+    terms: ['announcement', 'banner', 'notification'],
+    link: '/marketing/Announcements',
+    category: 'marketing',
+  },
+  {
+    name: 'Banners',
+    terms: ['banner', 'hero', 'promotion'],
+    link: '/marketing/Banners',
+    category: 'marketing',
+  },
+  {
+    name: 'Blog Cards',
+    terms: ['blog', 'card', 'post'],
+    link: '/marketing/Blog Cards',
+    category: 'marketing',
+  },
+  {
+    name: 'Buttons',
+    terms: ['button', 'action', 'cta'],
+    link: '/marketing/Buttons',
+    category: 'marketing',
+  },
+  {
+    name: 'Cards',
+    terms: ['card', 'content', 'profile'],
+    link: '/marketing/Cards',
+    category: 'marketing',
+  },
+  {
+    name: 'Carts',
+    terms: ['cart', 'ecommerce', 'checkout'],
+    link: '/marketing/Carts',
+    category: 'marketing',
+  },
+  {
+    name: 'CTAs',
+    terms: ['cta', 'marketing', 'signup'],
+    link: '/marketing/CTAs',
+    category: 'marketing',
+  },
+  {
+    name: 'FAQs',
+    terms: ['faq', 'questions', 'support'],
+    link: '/marketing/FAQs',
+    category: 'marketing',
+  },
+  {
+    name: 'Footers',
+    terms: ['footer', 'navigation', 'branding'],
+    link: '/marketing/Footers',
+    category: 'marketing',
+  },
+  {
+    name: 'Header',
+    terms: ['header', 'navigation', 'cta'],
+    link: '/marketing/Header',
+    category: 'marketing',
+  },
+  {
+    name: 'Pricing',
+    terms: ['pricing', 'plan', 'subscription'],
+    link: '/marketing/Pricing',
+    category: 'marketing',
+  },
+  {
+    name: 'Product Cards',
+    terms: ['product', 'card', 'ecommerce'],
+    link: '/marketing/Product Cards',
+    category: 'marketing',
+  },
+  {
+    name: 'Product Collections',
+    terms: ['product', 'collection', 'ecommerce'],
+    link: '/marketing/Product Collections',
+    category: 'marketing',
+  },
+  {
+    name: 'Sections',
+    terms: ['section', 'feature', 'layout'],
+    link: '/marketing/Sections',
+    category: 'marketing',
   },
 ];
 

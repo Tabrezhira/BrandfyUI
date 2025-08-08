@@ -1,27 +1,12 @@
 import { FaGithub } from 'react-icons/fa';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { MdMenu } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import Search from '../../utils/Search';
 
 function Navbar() {
-  // const [stars, setStars] = useState(null);
-  // Example of using axios to fetch data
-  // useEffect(() => {
-  //   const fetchStars = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         'https://api.github.com/repos/TabrezHira/Full-Stack-Book-Store-Application'
-  //       );
-  //       setStars(response.data.stargazers_count);
-  //     } catch (error) {
-  //       console.error('Error fetching GitHub stars:', error.message);
-  //     }
-  //   };
 
-  //   fetchStars();
-  // }, []);
 
   const [isOpen, setIsOpen] = useState(false);
 

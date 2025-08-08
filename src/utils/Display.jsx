@@ -25,7 +25,7 @@ function Display({
   const [currentSize, setCurrentSize] = useState('100%');
   const [codeFormat, setCodeFormat] = useState('HTML');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  // const [styles, setStyles] = useState('');
+
   const [formattedHtml, setFormattedHtml] = useState('');
   const [codeView, setCodeView] = useState(false);
   const [copyText, setCopyText] = useState('Copy');
@@ -81,10 +81,7 @@ function Display({
           .then((res) => res.text())
           .catch((err) => console.error('Error loading stylesheet:', err))
       )
-    ).then((styles) => {
-      allStyles += styles.join('');
-      setStyles(allStyles);
-    });
+    )
   }, []);
 
   const handleCopy = async () => {
