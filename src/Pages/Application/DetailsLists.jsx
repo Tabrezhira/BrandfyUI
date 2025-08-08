@@ -2,7 +2,8 @@ const components = import.meta.glob(
   '../../components/AllComponents/application/details-list/*.html',
   {
     eager: true,
-    as: 'raw',
+    import: 'default',
+    query: '?raw',
   }
 );
 

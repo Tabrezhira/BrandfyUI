@@ -1,10 +1,12 @@
 const components = import.meta.glob(
-  '/public/application/Breadcrumbs/*.html',
+  '../../components/AllComponents/application/Breadcrumbs/*.html',
   {
     eager: true,
-    as: 'raw',
+    import: 'default',
+    query: '?raw',
   }
 );
+
 
 import Display from '../../utils/Display.jsx';
 import { componentPreviewHtml } from '../../utils/transformers.js';

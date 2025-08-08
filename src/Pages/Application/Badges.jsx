@@ -1,8 +1,9 @@
 const components = import.meta.glob(
-  '/public/application/badges/*.html',
+  '@/components/AllComponents/application/badges/*.html',
   {
     eager: true,
-    as: 'raw',
+    import: 'default',
+    query: '?raw',
   }
 );
 

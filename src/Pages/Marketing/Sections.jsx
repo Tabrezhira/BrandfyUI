@@ -1,8 +1,9 @@
 
-const components = import.meta.glob('../../components/AllComponents/marketing/sections/*.html', {
-  eager: true,
-  as: 'raw',
-});
+const components = import.meta.glob('../../components/AllComponents/marketing/sections/*.html',   {
+    eager: true,
+    import: 'default',
+    query: '?raw',
+  });
 
 import Display from '../../utils/Display.jsx';
 import { componentPreviewHtml } from '../../utils/transformers.js';
