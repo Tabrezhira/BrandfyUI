@@ -1,5 +1,5 @@
 const components = import.meta.glob(
-  '../../components/AllComponents/application/Breadcrumbs/*.html',
+  '/public/application/Breadcrumbs/*.html',
   {
     eager: true,
     as: 'raw',

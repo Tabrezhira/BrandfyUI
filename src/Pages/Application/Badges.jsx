@@ -1,5 +1,5 @@
 const components = import.meta.glob(
-  '../../components/AllComponents/application/badges/*.html',
+  '/public/application/badges/*.html',
   {
     eager: true,
     as: 'raw',

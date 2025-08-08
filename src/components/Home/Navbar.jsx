@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { MdMenu } from 'react-icons/md';
 import { Link } from 'react-router-dom';
+import Search from '../../utils/Search';
+
 function Navbar() {
   const [stars, setStars] = useState(null);
   // Example of using axios to fetch data
@@ -32,21 +34,32 @@ function Navbar() {
               BrandfyUl 🚀
             </Link>
           </li>
-          <li className="cursor-pointer hidden md:block"><Link to="/application">Application</Link></li>
-          <li className="cursor-pointer hidden  md:block"> <Link to="/marketing">Marketing</Link></li>
-          <li className="cursor-pointer hidden  md:block"><Link to="/blog">Blog</Link></li>
+          <li className="cursor-pointer hidden md:block">
+            <Link to="/application">Application</Link>
+          </li>
+          <li className="cursor-pointer hidden  md:block">
+            {' '}
+            <Link to="/marketing">Marketing</Link>
+          </li>
+          <li className="cursor-pointer hidden  md:block">
+            <Link to="/blog">Blog</Link>
+          </li>
         </ul>
 
         <div className="flex items-center gap-2 md:gap-4 relative">
-          <div className=" border-1  shadow-sm  border-gray-300 rounded-md p-1 md:p-2 md:px-6 px-4 py-2 flex items-center md:gap-2">
-            <input
+          {/* <div className=" border-1  relative shadow-sm  border-gray-300 rounded-md p-1 md:p-2 md:px-6 px-4 py-2 flex items-center md:gap-2"> */}
+            {/* <input
               className="w-30 md:w-50  border-none outline-none bg-transparent shadow-none focus:ring-0"
               placeholder="Search components"
+
               type="text"
-            />
-          </div>
+            /> */}
+            <Search/>
+          {/* </div> */}
           <div className="flex items-center gap-1 text-lg font-semibold">
-            <Link to="https://github.com/Tabrezhira"><FaGithub className=" cursor-pointer text-2xl " /></Link>
+            <Link to="https://github.com/Tabrezhira">
+              <FaGithub className=" cursor-pointer text-2xl " />
+            </Link>
           </div>
           <div>
             <MdMenu
@@ -59,13 +72,13 @@ function Navbar() {
             <div className="absolute top-16 left-0 w-full bg-white rounded-md shadow-lg border-t border-gray-200 z-50">
               <ul className="flex flex-col items-start justify-center w-full">
                 <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer w-full">
-                 <Link to="/application">Application</Link>
+                  <Link to="/application">Application</Link>
                 </li>
                 <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer w-full">
                   <Link to="/marketing">Marketing</Link>
                 </li>
                 <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer w-full">
-                 <Link to="/blog">Blog</Link>
+                  <Link to="/blog">Blog</Link>
                 </li>
               </ul>
             </div>

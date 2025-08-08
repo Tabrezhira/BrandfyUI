@@ -53,12 +53,12 @@ import ProductCards from './Pages/Marketing/ProductCards';
 import ProductCollections from './Pages/Marketing/ProductCollections';
 import Sections from './Pages/Marketing/Sections';
 
+
 function App() {
   return (
     <Router>
       <Navbar />
       <Header />
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/application" element={<Application />} />
