@@ -12,6 +12,7 @@ BrandfyUI is a free, open-source React component library built with Tailwind CSS
 - 🔍 Live Component Preview
 - 📝 Code Export (HTML/JSX/Vue)
 
+
 ## Tech Stack
 
 - React 19.1.0
