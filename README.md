@@ -109,6 +109,6 @@ This project is open source and available under the [MIT License](LICENSE).
 - Tailwind CSS Team
 - All Contributors
 
----
+--
 
 For more information, visit our [documentation](https://brandfyui.com/docs).
